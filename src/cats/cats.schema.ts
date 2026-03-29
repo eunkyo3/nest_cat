@@ -41,7 +41,6 @@ export class Cat {
     example: 'img',
     description: 'img',
   })
-  @Prop({ required: true })
   @IsString()
   imgUrl: string;
 
