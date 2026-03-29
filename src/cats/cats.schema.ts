@@ -41,10 +41,19 @@ export class Cat {
     example: 'img',
     description: 'img',
   })
+  @Prop({
+    default:
+      'https://busan.fnnews.com/resource/media/image/2018/08/01/201808010053335858_l.jpg',
+  })
   @IsString()
   imgUrl: string;
 
-  readonly readOnlyData: { id: string; email: string; name: string };
+  readonly readOnlyData: {
+    id: string;
+    email: string;
+    name: string;
+    imgUrl: string;
+  };
 }
 
 export const CatSchema = SchemaFactory.createForClass(Cat);
@@ -54,5 +63,6 @@ CatSchema.virtual('readOnlyData').get(function (this: CatDocument) {
     id: this.id,
     email: this.email,
     name: this.name,
+    imgUrl: this.imgUrl,
   };
 });
