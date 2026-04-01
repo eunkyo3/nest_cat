@@ -73,7 +73,7 @@ _CatSchema.virtual('readOnlyData').get(function (this: CatDocument) {
 });
 
 _CatSchema.virtual('comments', {
-  ref: 'comments',
+  ref: Comments.name,
   localField: '_id',
   foreignField: 'info',
 });

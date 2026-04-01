@@ -1,20 +1,15 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cat, CatDocument } from './cats.schema';
-import mongoose, { Model, Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CatRequestDto } from './dto/cats.request.dto';
-import { CommentsSchema } from 'src/comments/comments.schema';
 
 @Injectable()
 export class CatsRepository {
   constructor(@InjectModel(Cat.name) private readonly catModel: Model<Cat>) {}
 
   async findAll() {
-    const CommentsModel = mongoose.model('comments', CommentsSchema);
-
-    const result = await this.catModel
-      .find()
-      .populate('comments', CommentsModel);
+    const result = await this.catModel.find().populate('comments');
     return result;
   }
 

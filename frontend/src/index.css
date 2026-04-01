@@ -1,0 +1,125 @@
+:root {
+  --text: #3d3429;
+  --text-h: #1a1410;
+  --text-muted: #6b5f50;
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --border: #e8dfd4;
+  --accent: #c45c26;
+  --accent-hover: #a84d1f;
+  --accent-soft: rgba(196, 92, 38, 0.12);
+  --danger: #b42318;
+  --ok: #1d6b3a;
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(26, 20, 16, 0.08);
+  --sans: 'Segoe UI', system-ui, Roboto, sans-serif;
+  --mono: ui-monospace, 'Cascadia Code', monospace;
+
+  font-family: var(--sans);
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #d4c9bc;
+    --text-h: #f3ebe3;
+    --text-muted: #9a8c7c;
+    --bg: #161311;
+    --surface: #1f1d1a;
+    --border: #3a342f;
+    --accent: #e88a4f;
+    --accent-hover: #f0a06a;
+    --accent-soft: rgba(232, 138, 79, 0.15);
+    --danger: #f5a8a0;
+    --ok: #7dd3a0;
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2 {
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+}
+
+h2.h2-inline {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 0.85em;
+}
+
+.small {
+  font-size: 0.8rem;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.lede {
+  font-size: 1.05rem;
+  max-width: 36ch;
+}
+
+.error-msg {
+  color: var(--danger);
+  margin: 0 0 0.75rem;
+}
+
+.ok-msg {
+  color: var(--ok);
+  margin: 0 0 0.75rem;
+}

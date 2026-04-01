@@ -11,7 +11,7 @@ export class Comments {
     description: '작성한 고양이 id',
     required: true,
   })
-  @Prop({ type: Types.ObjectId, required: true, ref: 'cats' })
+  @Prop({ type: Types.ObjectId, required: true, ref: 'Cat' })
   @IsString()
   @IsNotEmpty()
   author: Types.ObjectId;
@@ -30,13 +30,13 @@ export class Comments {
   })
   @Prop({ default: 0 })
   @IsPositive()
-  likeCount: string;
+  likeCount: number;
 
   @ApiProperty({
     description: '작성 대상(게시글, 정보글)',
     required: true,
   })
-  @Prop({ type: Types.ObjectId, required: true, ref: 'cats' })
+  @Prop({ type: Types.ObjectId, required: true, ref: 'Cat' })
   @IsNotEmpty()
   info: Types.ObjectId;
 }
