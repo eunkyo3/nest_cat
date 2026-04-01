@@ -10,16 +10,16 @@ import {
 } from '@nestjs/common';
 import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
 import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor';
-import { CatRequestDto } from './dto/cats.request.dto';
-import { CatsService } from './cats.service';
+import { CatRequestDto } from '../dto/cats.request.dto';
+import { CatsService } from '../service/cats.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { ReadOnlyCatDto } from './dto/cat.dto';
+import { ReadOnlyCatDto } from '../dto/cat.dto';
 import { AuthService } from 'src/auth/auth.service';
 import { LoginRequestDto } from 'src/auth/dto/login.request.dto';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
 import { Request } from 'express';
 import { CurrentUser } from 'src/common/decorators/user.decorator';
-import type { Cat, CatDocument } from './cats.schema';
+import type { Cat, CatDocument } from '../cats.schema';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from 'src/common/utils/multer.options';
 
@@ -80,5 +80,7 @@ export class CatsController {
 
   @ApiOperation({ summary: '모든 고양이 가져오기' })
   @Get('all')
-  getAllCat() {}
+  getAllCat() {
+    return this.catsService.getAllCat();
+  }
 }

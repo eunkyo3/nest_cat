@@ -1,15 +1,21 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cat, CatDocument } from './cats.schema';
-import { Model } from 'mongoose';
+import mongoose, { Model, Types } from 'mongoose';
 import { CatRequestDto } from './dto/cats.request.dto';
+import { CommentsSchema } from 'src/comments/comments.schema';
 
 @Injectable()
 export class CatsRepository {
   constructor(@InjectModel(Cat.name) private readonly catModel: Model<Cat>) {}
 
   async findAll() {
-    return await this.catModel.find();
+    const CommentsModel = mongoose.model('comments', CommentsSchema);
+
+    const result = await this.catModel
+      .find()
+      .populate('comments', CommentsModel);
+    return result;
   }
 
   async findCatByIdAndUpdateImg(id: string, fileName: string) {
@@ -20,7 +26,9 @@ export class CatsRepository {
     return newCat!.readOnlyData;
   }
 
-  async findCatByIdWithoutPassword(catId: string): Promise<CatDocument | null> {
+  async findCatByIdWithoutPassword(
+    catId: string | Types.ObjectId,
+  ): Promise<CatDocument | null> {
     const cat = await this.catModel.findById(catId).select('-password');
     return cat;
   }
